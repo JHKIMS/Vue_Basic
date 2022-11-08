@@ -1,10 +1,11 @@
 <template>
 
 
-  <div class="black-bg" v-if="modal == true">
+  <div v-if="modal == true" class="black-bg">
     <div class="white-bg">
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용확인하3</p>
+      <h4>{{onerooms[userClick].title}}</h4>
+      <img :src="onerooms[userClick].image" class="room-img">
+      {{onerooms[userClick].price}}만원
       <button @click="modal = false">닫기</button>
     </div>
   </div>
@@ -13,10 +14,10 @@
     <a v-for="(anyName, i) in menu" :key="i"> {{ anyName }}</a>
   </div>
   Vue랴Vue랴
-  <div v-for="(sample, i) in products" :key="i">
-    <img :src="require('./assets/room' + i + '.jpg')" class="room-img">
+  <div v-for="(sample, i) in onerooms" :key="i">
+    <img :src="onerooms[i].image" class="room-img"> <!-- src같은 속성에 데이터 바인딩은 이런 방식으로-->
     <!-- <h4 @click="modal = true">{{ products[i] }}</h4> -->
-    <h4 @click="modal = true">{{ onerooms[i].title }}</h4>
+    <h4 @click="modal = true; userClick=i">{{ onerooms[i].title }}</h4> <!--그냥 데이터 바인딩은 {{}}-->
     <!-- {{sample}} 로 해도 동일한 결과값 출력 -->
     <!-- <p>{{ price[i] }}만원</p> -->
     <p>{{ onerooms[i].price }}만원</p>
@@ -34,11 +35,12 @@ export default {
   name: 'App',
   data() {
     return {
+      userClick : 0,
       modal : false, // ui의 현재 상태(동적ui) - 사실상 모달창 스위치
       price: [50, 60, 70],
       products: ['1원룸', '2원룸', '3원룸'],
       menu: ['Home', 'Shop', 'About'],
-      count: [0, 0, 0],
+      count: [0, 0, 0, 0, 0, 0],
       onerooms : test,
     }
   }
