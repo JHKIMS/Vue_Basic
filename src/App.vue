@@ -1,49 +1,47 @@
 <template>
 
-
-  <div v-if="modal == true" class="black-bg">
-    <div class="white-bg">
-      <h4>{{onerooms[userClick].title}}</h4>
-      {{onerooms[userClick].content}} <br>
-      {{onerooms[userClick].price}}만원 <br>
-      <button @click="modal = false">닫기</button>
-    </div>
-  </div>
+  <ModalVue :onerooms="onerooms" :userClick="userClick" :modal="modal" />
 
   <div class="menu">
     <a v-for="(anyName, i) in menu" :key="i"> {{ anyName }}</a>
   </div>
-  <DiscountVue/>
+  <DiscountVue />
   Vue랴Vue랴
-  <div v-for="(sample, i) in onerooms" :key="i">
-    <img :src="onerooms[i].image" class="room-img"> <!-- src같은 속성에 데이터 바인딩은 이런 방식으로-->
+  
+  <CardVue :oneroom="onerooms[i]" v-for="(room,i) in onerooms" :key="room"/>
+
+  <!-- <div v-for="(sample, i) in onerooms" :key="i"> -->
+    <!-- <img :src="onerooms[i].image" class="room-img"> src같은 속성에 데이터 바인딩은 이런 방식으로 -->
     <!-- <h4 @click="modal = true">{{ products[i] }}</h4> -->
-    <h4 @click="modal = true; userClick=i">{{ onerooms[i].title }}</h4> <!--그냥 데이터 바인딩은 {{}}-->
+    <!-- <h4 @click="modal = true; userClick = i">{{ onerooms[i].title }}</h4> -->
+    <!--그냥 데이터 바인딩은 {{}}-->
     <!-- {{sample}} 로 해도 동일한 결과값 출력 -->
     <!-- <p>{{ price[i] }}만원</p> -->
-    <p>{{ onerooms[i].price }}만원</p>
-    <button @click="count[i]++">허위</button>
+    <!-- <p>{{ onerooms[i].price }}만원</p> -->
+    <!-- <button @click="count[i]++">허위</button> -->
     <!-- v-on:click -->
-    <span>신고수 : {{ count[i] }}</span>
-  </div>
+    <!-- <span>신고수 : {{ count[i] }}</span> -->
+  <!-- </div> -->
 
 </template>
 
 <script>
 import test from './assets/oneroom.js';
 import DiscountVue from './Discount.vue';
+import ModalVue from './Modal.vue';
+import CardVue from './Card.vue';
 
 export default {
   name: 'App',
   data() {
     return {
-      userClick : 0,
-      modal : false, // ui의 현재 상태(동적ui) - 사실상 모달창 스위치
+      userClick: 0,
+      modal: false, // ui의 현재 상태(동적ui) - 사실상 모달창 스위치
       price: [50, 60, 70],
       products: ['1원룸', '2원룸', '3원룸'],
       menu: ['Home', 'Shop', 'About'],
       count: [0, 0, 0, 0, 0, 0],
-      onerooms : test,
+      onerooms: test,
     }
   }
   /* 
@@ -57,7 +55,9 @@ export default {
     }
   },
   components: {
-    DiscountVue : DiscountVue,
+    DiscountVue: DiscountVue,
+    ModalVue: ModalVue,
+    CardVue: CardVue,
   }
 }
 </script>
