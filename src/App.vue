@@ -4,8 +4,8 @@
   <div v-if="modal == true" class="black-bg">
     <div class="white-bg">
       <h4>{{onerooms[userClick].title}}</h4>
-      <img :src="onerooms[userClick].image" class="room-img">
-      {{onerooms[userClick].price}}만원
+      {{onerooms[userClick].content}} <br>
+      {{onerooms[userClick].price}}만원 <br>
       <button @click="modal = false">닫기</button>
     </div>
   </div>
@@ -13,6 +13,7 @@
   <div class="menu">
     <a v-for="(anyName, i) in menu" :key="i"> {{ anyName }}</a>
   </div>
+  <DiscountVue/>
   Vue랴Vue랴
   <div v-for="(sample, i) in onerooms" :key="i">
     <img :src="onerooms[i].image" class="room-img"> <!-- src같은 속성에 데이터 바인딩은 이런 방식으로-->
@@ -30,6 +31,7 @@
 
 <script>
 import test from './assets/oneroom.js';
+import DiscountVue from './Discount.vue';
 
 export default {
   name: 'App',
@@ -55,7 +57,7 @@ export default {
     }
   },
   components: {
-
+    DiscountVue : DiscountVue,
   }
 }
 </script>
