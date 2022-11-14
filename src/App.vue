@@ -1,6 +1,6 @@
 <template>
 
-  <ModalVue :onerooms="onerooms" :userClick="userClick" :modal="modal" />
+  <ModalVue @modalClose ="modal=false;" :onerooms="onerooms" :userClick="userClick" :modal="modal" />
 
   <div class="menu">
     <a v-for="(anyName, i) in menu" :key="i"> {{ anyName }}</a>
@@ -8,7 +8,7 @@
   <DiscountVue />
   Vue랴Vue랴
   
-  <CardVue :oneroom="onerooms[i]" v-for="(room,i) in onerooms" :key="room"/>
+  <CardVue @sampleName="modal = true; userClick=$event" :oneroom="onerooms[i]" v-for="(room,i) in onerooms" :key="room"/>
 
   <!-- <div v-for="(sample, i) in onerooms" :key="i"> -->
     <!-- <img :src="onerooms[i].image" class="room-img"> src같은 속성에 데이터 바인딩은 이런 방식으로 -->

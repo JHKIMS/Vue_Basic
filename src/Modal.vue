@@ -4,7 +4,7 @@
             <h4>{{ onerooms[userClick].title }}</h4>
             {{ onerooms[userClick].content }} <br>
             {{ onerooms[userClick].price }}만원 <br>
-            <!-- <button @click="modal = false">닫기</button> -->
+            <button @click="modalClose">닫기</button>
         </div>
     </div>
 </template>
@@ -15,6 +15,11 @@ export default {
         onerooms : Array,
         userClick : Number,
         modal : Boolean,
+    },
+    methods :{
+        modalClose(){
+            this.$emit('modalClose')
+        }
     }
 }
 </script>
