@@ -8,7 +8,7 @@
   <div class="menu">
     <a v-for="(anyName, i) in menu" :key="i"> {{ anyName }}</a>
   </div>
-  <DiscountVue />
+  <DiscountVue v-if="showDiscount == true"/>
   Vue랴Vue랴
   
   <button @click="priceSort">가격순정렬</button>
@@ -49,6 +49,7 @@ export default {
       count: [0, 0, 0, 0, 0, 0],
       onerooms: test,
       oneroomsOriginal: [...test],
+      showDiscount: true,
     }
   }
   /* 
@@ -67,13 +68,13 @@ export default {
     },
     sortBack(){
       this.onerooms = [...this.oneroomsOriginal];
-    }
+    },
   },
   components: {
     DiscountVue: DiscountVue,
     ModalVue: ModalVue,
     CardVue: CardVue,
-  }
+  },
 }
 </script>
 
