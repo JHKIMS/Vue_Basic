@@ -1,6 +1,9 @@
 <template>
 
+<transition name="fade">
   <ModalVue @modalClose ="modal=false;" :onerooms="onerooms" :userClick="userClick" :modal="modal" />
+</transition>
+  
 
   <div class="menu">
     <a v-for="(anyName, i) in menu" :key="i"> {{ anyName }}</a>
@@ -63,6 +66,25 @@ export default {
 </script>
 
 <style>
+.fade-enter-from{
+  transform: translateY(-1000px);
+}
+.fade-enter-active{
+  transition: all 1s;
+}
+.fade-enter-to{
+  transform: translateY(0px);
+}
+.fade-leave-from{
+  opacity: 1;
+}
+.fade-leave-active{
+  transition: all 1s;
+}
+.fade-leave-to{
+  opacity: 0;
+}
+
 div {
   box-sizing: border-box;
 }
