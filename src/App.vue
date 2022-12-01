@@ -11,6 +11,9 @@
   <DiscountVue />
   Vue랴Vue랴
   
+  <button @click="priceSort">가격순정렬</button>
+  <button @click="sortBack">되돌리기</button>
+
   <CardVue @sampleName="modal = true; userClick=$event" :oneroom="onerooms[i]" v-for="(room,i) in onerooms" :key="room"/>
 
   <!-- <div v-for="(sample, i) in onerooms" :key="i"> -->
@@ -45,6 +48,7 @@ export default {
       menu: ['Home', 'Shop', 'About'],
       count: [0, 0, 0, 0, 0, 0],
       onerooms: test,
+      oneroomsOriginal: [...test],
     }
   }
   /* 
@@ -55,6 +59,14 @@ export default {
   methods: {
     increase() {
       this.count += 1;
+    },
+    priceSort(){
+      this.onerooms.sort(function(a,b){
+        return a.price-b.price;
+      })
+    },
+    sortBack(){
+      this.onerooms = [...this.oneroomsOriginal];
     }
   },
   components: {
